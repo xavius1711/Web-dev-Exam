@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export default function Index() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navbar */}
@@ -13,17 +16,68 @@ export default function Index() {
           <Link to="/" className="text-base font-medium text-cyan">
             Home
           </Link>
-          <Link to="#skills" className="text-base font-medium text-gray-900">
+          <a href="#skills" className="text-base font-medium text-gray-900">
             Skills
-          </Link>
-          <Link to="#projects" className="text-base font-medium text-gray-900">
+          </a>
+          <a href="#projects" className="text-base font-medium text-gray-900">
             Projects
-          </Link>
-          <Link to="#contact" className="text-base font-medium text-gray-900">
+          </a>
+          <a href="#contact" className="text-base font-medium text-gray-900">
             Contact
-          </Link>
+          </a>
         </div>
+        <button
+          className="md:hidden p-2"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M3 12H21M3 6H21M3 18H21"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
       </nav>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white border-b border-gray-200 px-6 py-4">
+          <div className="flex flex-col gap-4">
+            <Link
+              to="/"
+              className="text-base font-medium text-cyan"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Home
+            </Link>
+            <a
+              href="#skills"
+              className="text-base font-medium text-gray-900"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Skills
+            </a>
+            <a
+              href="#projects"
+              className="text-base font-medium text-gray-900"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Projects
+            </a>
+            <a
+              href="#contact"
+              className="text-base font-medium text-gray-900"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Contact
+            </a>
+          </div>
+        </div>
+      )}
 
       {/* Hero Section */}
       <section className="px-6 md:px-20 lg:px-[120px] py-12 lg:py-20">
